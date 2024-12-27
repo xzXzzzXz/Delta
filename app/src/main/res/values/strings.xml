@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DeltaApp</string>
+    <string name="jako_sumljiva_organizacija">Jako sumljiva organizacija</string>
+    <string name="from">From</string>
+    <string name="deltaapp">DeltaApp</string>
+    <string name="do_you_really_want_to_n_log_out">Do You really want to \n log out?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="type_the_messages">Type The Messages...</string>
+</resources>
