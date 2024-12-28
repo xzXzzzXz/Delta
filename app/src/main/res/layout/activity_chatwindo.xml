@@ -96,10 +96,10 @@
             app:cardCornerRadius="@dimen/_25sdp">
 
             <ImageView
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_gravity="center"
-                android:background="@drawable/sendbut" />
+                android:background="@drawable/icon_sendmsg" />
 
         </androidx.cardview.widget.CardView>
 

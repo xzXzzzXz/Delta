@@ -2,9 +2,6 @@
 
 package com.av.deltaApp;
 
-import static com.av.deltaApp.chatwindo.reciverIImg;
-import static com.av.deltaApp.chatwindo.senderImg;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,11 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class messagesAdpter extends RecyclerView.Adapter {
     Context context;
