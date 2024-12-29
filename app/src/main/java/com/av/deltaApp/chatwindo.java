@@ -1,5 +1,3 @@
-
-
 package com.av.deltaApp;
 
 import androidx.annotation.NonNull;
@@ -30,20 +28,21 @@ import java.util.Date;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class chatwindo extends AppCompatActivity {
-    String reciverimg, reciverUid,reciverName,SenderUID;
+    String reciverimg, reciverUid, reciverName, SenderUID;
     CircleImageView profile;
     TextView reciverNName;
     FirebaseDatabase database;
     FirebaseAuth firebaseAuth;
-    public  static String senderImg;
-    public  static String reciverIImg;
+    public static String senderImg;
+    public static String reciverIImg;
     CardView sendbtn;
     EditText textmsg;
 
-    String senderRoom,reciverRoom;
+    String senderRoom, reciverRoom;
     RecyclerView messageAdpter;
     ArrayList<msgModelclass> messagesArrayList;
     messagesAdpter mmessagesAdpter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,29 +64,27 @@ public class chatwindo extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         messageAdpter.setLayoutManager(linearLayoutManager);
-        mmessagesAdpter = new messagesAdpter(chatwindo.this,messagesArrayList);
+        mmessagesAdpter = new messagesAdpter(chatwindo.this, messagesArrayList);
         messageAdpter.setAdapter(mmessagesAdpter);
 
 
+        reciverNName.setText("" + reciverName);
 
-        reciverNName.setText(""+reciverName);
+        SenderUID = firebaseAuth.getUid();
 
-        SenderUID =  firebaseAuth.getUid();
-
-        senderRoom = SenderUID+reciverUid;
-        reciverRoom = reciverUid+SenderUID;
-
+        senderRoom = SenderUID + reciverUid;
+        reciverRoom = reciverUid + SenderUID;
 
 
-        DatabaseReference  reference = database.getReference().child("user").child(firebaseAuth.getUid());
-        DatabaseReference  chatreference = database.getReference().child("chats").child(senderRoom).child("messages");
+        DatabaseReference reference = database.getReference().child("user").child(firebaseAuth.getUid());
+        DatabaseReference chatreference = database.getReference().child("chats").child(senderRoom).child("messages");
 
 
         chatreference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 messagesArrayList.clear();
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     msgModelclass messages = dataSnapshot.getValue(msgModelclass.class);
                     messagesArrayList.add(messages);
                 }
@@ -103,7 +100,7 @@ public class chatwindo extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                reciverIImg=reciverimg;
+                reciverIImg = reciverimg;
             }
 
             @Override
@@ -116,15 +113,15 @@ public class chatwindo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String message = textmsg.getText().toString();
-                if (message.isEmpty()){
+                if (message.isEmpty()) {
                     Toast.makeText(chatwindo.this, "Enter The Message First", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 textmsg.setText("");
                 Date date = new Date();
-                msgModelclass messagess = new msgModelclass(message,SenderUID,date.getTime());
+                msgModelclass messagess = new msgModelclass(message, SenderUID, reciverUid, date.getTime());
 
-                database=FirebaseDatabase.getInstance("https://deltaapp-ed69e-default-rtdb.europe-west1.firebasedatabase.app");
+                database = FirebaseDatabase.getInstance("https://deltaapp-ed69e-default-rtdb.europe-west1.firebasedatabase.app");
                 database.getReference().child("chats")
                         .child(senderRoom)
                         .child("messages")
@@ -136,14 +133,14 @@ public class chatwindo extends AppCompatActivity {
                                         .child("messages")
                                         .push().setValue(messagess).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
 
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                // Uspešno poslato
                                             }
                                         });
                             }
                         });
             }
         });
-
     }
 }

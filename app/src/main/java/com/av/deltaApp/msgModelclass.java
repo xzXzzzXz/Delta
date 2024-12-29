@@ -1,61 +1,22 @@
-//package com.av.avmessenger;
-//
-//public class msgModelclass {
-//    String message;
-//    String senderid;
-//    long timeStamp;
-//
-//    public msgModelclass() {
-//    }
-//
-//    public msgModelclass(String message, String senderid, long timeStamp) {
-//        this.message = message;
-//        this.senderid = senderid;
-//        this.timeStamp = timeStamp;
-//    }
-//
-//    public String getMessage() {
-//        return message;
-//    }
-//
-//    public void setMessage(String message) {
-//        this.message = message;
-//    }
-//
-//    public String getSenderid() {
-//        return senderid;
-//    }
-//
-//    public void setSenderid(String senderid) {
-//        this.senderid = senderid;
-//    }
-//
-//    public long getTimeStamp() {
-//        return timeStamp;
-//    }
-//
-//    public void setTimeStamp(long timeStamp) {
-//        this.timeStamp = timeStamp;
-//    }
-//}
-
 
 package com.av.deltaApp;
 
 public class msgModelclass {
     String message;
-    String senderid;
-    long timeStamp;
+    String senderUid;
+    String receiverUid;
+    long timestamp;
 
-    public msgModelclass() {
-    }
+    public msgModelclass() {}
 
-    public msgModelclass(String message, String senderid, long timeStamp) {
+    public msgModelclass(String message, String senderUid, String receiverUid, long timestamp) {
         this.message = message;
-        this.senderid = senderid;
-        this.timeStamp = timeStamp;
+        this.senderUid = senderUid;
+        this.receiverUid = receiverUid;
+        this.timestamp = timestamp;
     }
 
+    // Getteri i setteri
     public String getMessage() {
         return message;
     }
@@ -64,19 +25,27 @@ public class msgModelclass {
         this.message = message;
     }
 
-    public String getSenderid() {
-        return senderid;
+    public String getSenderUid() {
+        return senderUid;
     }
 
-    public void setSenderid(String senderid) {
-        this.senderid = senderid;
+    public void setSenderUid(String senderUid) {
+        this.senderUid = senderUid;
     }
 
-    public long getTimeStamp() {
-        return timeStamp;
+    public String getReceiverUid() {
+        return receiverUid;
     }
 
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setReceiverUid(String receiverUid) {
+        this.receiverUid = receiverUid;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
